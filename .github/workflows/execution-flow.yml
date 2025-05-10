@@ -33,11 +33,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test code
-        id: run-tests
+        if: 
         run: npm run test
       - name: Upload test report
-        if: failure() &&  steps.run-tests.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: test-report
           path: test.json
@@ -59,7 +58,7 @@ jobs:
         id: build-website
         run: npm run build
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files
           path: dist
@@ -75,11 +74,3 @@ jobs:
         run: ls
       - name: Deploy
         run: echo "Deploying..."
-  report:
-   if: failure()
-   runs-on: ubuntu-latest
-   steps:
-    - name: output information
-      run: |
-        echo "Something wend wrong
-        echo "L${{ github }}"
