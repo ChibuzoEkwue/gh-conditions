@@ -1,4 +1,4 @@
-name: Matrix Demo
+name: Matrix
 
 on: push
 
@@ -9,11 +9,12 @@ jobs:
         node_version: [18, 19, 20]
         operating-system: [ubuntu-latest, windows-latest]
         include:
-          - node-version: 20
+          - node_version: 20
             operating-system: ubuntu-latest
         exclude:
-          - node_modules: 18
+          - node_version: 18
             operating-system: windows-latest
+
     runs-on: ${{ matrix.operating-system }}
 
     steps:
